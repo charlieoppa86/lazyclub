@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "181399971072",
+    "project_id": "lazy-club-client",
+    "storage_bucket": "lazy-club-client.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181399971072:android:5df508064e2a1c149b7fe5",
+        "android_client_info": {
+          "package_name": "com.wiilluscorp.lazyclub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181399971072-mrh9bpl1c4ljfa163gdlkuvchd00ohia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD09BjIGCONHLpGNmcnnyQPQCtSBvlJRJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181399971072-mrh9bpl1c4ljfa163gdlkuvchd00ohia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

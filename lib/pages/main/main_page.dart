@@ -5,7 +5,6 @@ import 'package:lazyclub/components/providers/studies_model.dart';
 import 'package:lazyclub/components/providers/studies_provider.dart';
 import 'package:lazyclub/components/theme/style.dart';
 import 'package:lazyclub/components/widgets/lists/offline_study_list.dart';
-import 'package:lazyclub/components/widgets/lists/online_study_list.dart';
 import 'package:lazyclub/components/widgets/lists/popular_list.dart';
 import 'package:lazyclub/components/widgets/lists/study_list.dart';
 import 'package:lazyclub/components/widgets/profile.dart';
@@ -38,6 +37,7 @@ class _MainPageState extends State<MainPage> {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         iconTheme: IconThemeData(color: headTextClr),
         centerTitle: false,
         title: Image.asset(

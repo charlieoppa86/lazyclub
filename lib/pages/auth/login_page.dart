@@ -1,13 +1,13 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:lazyclub/app.dart';
 import 'package:lazyclub/components/providers/global_methods.dart';
+import 'package:lazyclub/components/theme/style.dart';
 import 'package:lazyclub/components/widgets/buttons/auth_btn.dart';
-import 'package:lazyclub/components/widgets/buttons/sns_login.dart';
+import 'package:lazyclub/components/widgets/buttons/sns_login/apple_btn.dart';
+import 'package:lazyclub/components/widgets/buttons/sns_login/google_btn.dart';
 import 'package:lazyclub/components/widgets/utils.dart';
 import 'package:lazyclub/database/consts.dart';
 import 'package:lazyclub/database/firebase_consts.dart';
@@ -210,6 +210,11 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 10,
                     ),
+                    GoogleBTN(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    AppleBTN(),
                     Align(
                       alignment: Alignment.topRight,
                       child: TextButton(
@@ -226,10 +231,6 @@ class _LoginPageState extends State<LoginPage> {
                                 decoration: TextDecoration.underline),
                           )),
                     ),
-
-                    //  KakaoBTN(),
-
-                    //  GoogleBTN(),
                     SizedBox(
                       height: 10,
                     ),
@@ -260,15 +261,14 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 25,
                     ),
-                    SNSLoginWidget(),
-                    /*   AuthBTN(
+                    AuthBTN(
                       buttontext: '비회원 입장하기',
                       fct: () {
                         FirebaseAuth.instance.signInAnonymously();
                         Navigator.pushReplacementNamed(context, App.routeName);
                       },
-                      primaryColor: headTextClr.withOpacity(0.8),
-                    ), */
+                      primaryColor: yelloishClr,
+                    ),
                     SizedBox(
                       height: 20,
                     ),

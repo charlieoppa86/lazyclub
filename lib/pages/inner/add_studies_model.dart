@@ -1,11 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lazyclub/components/providers/favor_provider.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
 import 'package:lazyclub/components/providers/studies_model.dart';
 import 'package:lazyclub/components/theme/style.dart';
 import 'package:lazyclub/components/widgets/buttons/favor_btn.dart';

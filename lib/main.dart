@@ -5,7 +5,6 @@ import 'package:lazyclub/components/providers/dark_theme_provider.dart';
 import 'package:lazyclub/components/providers/favor_provider.dart';
 import 'package:lazyclub/components/providers/manage_provider.dart';
 import 'package:lazyclub/components/providers/studies_provider.dart';
-import 'package:lazyclub/components/providers/viewed_provider.dart';
 import 'package:lazyclub/components/theme/style.dart';
 import 'package:lazyclub/database/firebase_consts.dart';
 import 'package:lazyclub/firebase_options.dart';
@@ -16,7 +15,6 @@ import 'package:lazyclub/pages/inner/all_popular.dart';
 import 'package:lazyclub/pages/inner/all_studies.dart';
 import 'package:lazyclub/pages/inner/detail_page.dart';
 import 'package:lazyclub/pages/inner/each_cat.dart';
-import 'package:lazyclub/pages/inner/viewed_recently.dart';
 import 'package:lazyclub/pages/main/category_page.dart';
 import 'package:lazyclub/pages/main/favor_page.dart';
 import 'package:lazyclub/pages/main/main_page.dart';
@@ -86,7 +84,6 @@ class _MyAppState extends State<MyApp> {
                 ChangeNotifierProvider(
                     create: (context) => StudyGroupsProvider()),
                 ChangeNotifierProvider(create: (context) => FavorProvider()),
-                ChangeNotifierProvider(create: (context) => ViewedProvider()),
                 ChangeNotifierProvider(create: (context) => ManageProvider()),
               ],
               child: Consumer<DarkThemeProvider>(
@@ -105,7 +102,6 @@ class _MyAppState extends State<MyApp> {
                           EachCategotyPage(),
                       CategoriesPage.routeName: (context) => CategoriesPage(),
                       LoginPage.routeName: (context) => LoginPage(),
-                      ViewedPage.routeName: (context) => ViewedPage(),
                       EmailRegisterPage.routeName: (context) =>
                           EmailRegisterPage(),
                       PwForgetPage.routeName: (context) => PwForgetPage(),

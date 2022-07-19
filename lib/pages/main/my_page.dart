@@ -10,7 +10,6 @@ import 'package:lazyclub/components/theme/text.dart';
 import 'package:lazyclub/database/firebase_consts.dart';
 import 'package:lazyclub/pages/auth/login_page.dart';
 import 'package:lazyclub/pages/auth/pw_forget.dart';
-import 'package:lazyclub/pages/inner/viewed_recently.dart';
 import 'package:provider/provider.dart';
 
 class MyPage extends StatefulWidget {
@@ -187,14 +186,6 @@ class _MyPageState extends State<MyPage> {
                 title: '계정 관리',
                 icon: IconlyLight.profile,
                 onPressed: () {},
-              ),
-              _listTiles(
-                title: '최근 본 스터디',
-                icon: IconlyLight.show,
-                onPressed: () {
-                  GlobalMethods.navigateTo(
-                      context: context, routeName: ViewedPage.routeName);
-                },
               ),
               _listTiles(
                 title: '서비스 이용 안내',

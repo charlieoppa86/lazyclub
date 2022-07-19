@@ -2,7 +2,6 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:lazyclub/app.dart';
 import 'package:lazyclub/components/providers/global_methods.dart';
 import 'package:lazyclub/components/theme/style.dart';
 import 'package:lazyclub/components/widgets/buttons/auth_btn.dart';
@@ -259,9 +258,9 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 10,
                     ),
-                    AuthBTN(
+                    /*  AuthBTN(
                       buttontext: '비회원 입장하기',
                       fct: () {
                         FirebaseAuth.instance.signInAnonymously();
@@ -271,28 +270,22 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(
                       height: 20,
+                    ), */
+                    Text(
+                      '계정이 아직 없으시다면?',
+                      style: TextStyle(color: Colors.white),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '계정이 아직 없으시다면?',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              GlobalMethods.navigateTo(
-                                  context: context,
-                                  routeName: EmailRegisterPage.routeName);
-                            },
-                            child: Text(
-                              '회원가입 이동',
-                              style: TextStyle(
-                                fontSize: 15,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ))
-                      ],
+                    SizedBox(
+                      height: 15,
+                    ),
+                    AuthBTN(
+                      fct: () {
+                        GlobalMethods.navigateTo(
+                            context: context,
+                            routeName: EmailRegisterPage.routeName);
+                      },
+                      buttontext: '회원가입',
+                      primaryColor: bluishClr,
                     ),
                   ],
                 ),

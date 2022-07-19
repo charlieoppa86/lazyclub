@@ -1,10 +1,8 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:lazyclub/app.dart';
 import 'package:lazyclub/components/providers/global_methods.dart';
 import 'package:lazyclub/components/widgets/buttons/auth_btn.dart';
 import 'package:lazyclub/components/widgets/utils.dart';

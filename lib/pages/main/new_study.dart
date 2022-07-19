@@ -777,7 +777,7 @@ class _UploadPageState extends State<UploadStudyPage> {
     );
   }
 
-  /* Widget _leaderThumbnail() {
+  Widget _leaderThumbnail() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -840,17 +840,8 @@ class _UploadPageState extends State<UploadStudyPage> {
         ),
       ],
     );
-    /* kIsWeb
-                      ? Image.memory(
-                          webImage,
-                          fit: BoxFit.fill,
-                        )
-                      : Image.file(
-                          _pickedImage!,
-                          fit: BoxFit.fill,
-                        ), */
   }
- */
+
   Widget _studyApplication() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -971,10 +962,10 @@ class _UploadPageState extends State<UploadStudyPage> {
                           SizedBox(
                             height: 20,
                           ),
-                          /*  _leaderThumbnail(),
+                          _leaderThumbnail(),
                           SizedBox(
                             height: 20,
-                          ), */
+                          ),
                           _studyApplication(),
                           SizedBox(
                             height: 20,

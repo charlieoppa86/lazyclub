@@ -1,14 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lazyclub/components/providers/manage_model.dart';
-import 'package:lazyclub/components/providers/manage_provider.dart';
 import 'package:lazyclub/components/theme/style.dart';
 import 'package:lazyclub/components/widgets/profile.dart';
 import 'package:lazyclub/components/widgets/utils.dart';
-import 'package:lazyclub/pages/inner/detail_page.dart';
 import 'package:lazyclub/pages/inner/mng_studies_model.dart';
 import 'package:lazyclub/pages/main/my_page.dart';
-import 'package:provider/provider.dart';
 
 class MyStudiesList extends StatefulWidget {
   static const routeName = '/MyStudiesList';

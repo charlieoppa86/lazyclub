@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lazyclub/components/providers/global_methods.dart';
 import 'package:lazyclub/components/theme/style.dart';
@@ -22,7 +21,7 @@ class _MngStudiesModelState extends State<MngStudiesModel> {
   Widget build(BuildContext context) {
     final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
-    return Container(
+    return SizedBox(
       height: 130,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

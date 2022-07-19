@@ -171,7 +171,7 @@ class _MainPageState extends State<MainPage> {
                     itemBuilder: (BuildContext context, int index) {
                       return ChangeNotifierProvider.value(
                         value: popularStudies[index],
-                        child: OfflineStudiesWidget(),
+                        child: PopularStudyWidget(),
                       );
                     },
                   ),

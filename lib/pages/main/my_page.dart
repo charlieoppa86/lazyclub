@@ -3,14 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:lazyclub/components/providers/dark_theme_provider.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
-import 'package:lazyclub/components/theme/style.dart';
-import 'package:lazyclub/components/theme/text.dart';
-import 'package:lazyclub/database/firebase_consts.dart';
+import 'package:lazyclub/utils/global_methods.dart';
+import 'package:lazyclub/constants/db_constants.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/text.dart';
 import 'package:lazyclub/pages/auth/login_page.dart';
 import 'package:lazyclub/pages/auth/pw_forget.dart';
-import 'package:provider/provider.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
@@ -162,8 +160,6 @@ class _MyPageState extends State<MyPage> {
 
   @override
   Widget build(BuildContext context) {
-    final themeState = Provider.of<DarkThemeProvider>(context);
-    final Color color = themeState.getDarkTheme ? Colors.white : Colors.black;
     return Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(color: headTextClr),

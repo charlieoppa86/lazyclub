@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lazyclub/components/theme/style.dart';
-import 'package:lazyclub/components/theme/text.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/text.dart';
+import 'package:lazyclub/utils/utils.dart';
 
 class EmptyStudyWidget extends StatelessWidget {
   const EmptyStudyWidget({super.key});
@@ -9,7 +9,6 @@ class EmptyStudyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = Utils(context).getScreenSize;
-    final Color color = Utils(context).color;
     return Column(
       children: [
         SizedBox(
@@ -25,14 +24,14 @@ class EmptyStudyWidget extends StatelessWidget {
         ),
         TextWidget(
           text: '이런!',
-          color: color,
+          color: headTextClr,
           textSize: 26,
           isTitle: true,
         ),
         SizedBox(
           height: 5,
         ),
-        TextWidget(text: '아직 생성된 스터디가 없어요', color: color, textSize: 16),
+        TextWidget(text: '아직 생성된 스터디가 없어요', color: headTextClr, textSize: 16),
         SizedBox(
           height: 30,
         ),

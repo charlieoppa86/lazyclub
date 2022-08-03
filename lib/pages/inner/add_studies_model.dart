@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lazyclub/components/providers/favor_provider.dart';
 import 'package:lazyclub/components/providers/studies_model.dart';
-import 'package:lazyclub/components/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
 import 'package:lazyclub/components/widgets/buttons/favor_btn.dart';
-import 'package:lazyclub/components/widgets/currency.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/currency.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class AddStudiesModel extends StatefulWidget {
@@ -36,7 +36,6 @@ class _AddStudiesModelState extends State<AddStudiesModel> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
     final studyGroupModel = Provider.of<StudyGroupModel>(context);
     final favorProvider = Provider.of<FavorProvider>(context);

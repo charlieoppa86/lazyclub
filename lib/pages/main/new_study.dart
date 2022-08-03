@@ -6,13 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
-import 'package:lazyclub/components/theme/style.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/global_methods.dart';
+import 'package:lazyclub/constants/db_constants.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/database/categories.dart';
-import 'package:lazyclub/database/firebase_consts.dart';
 import 'package:lazyclub/pages/auth/login_page.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:lazyclub/pages/main/my_study.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 
@@ -597,7 +598,7 @@ class _UploadPageState extends State<UploadStudyPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '스터디 비용',
+          '스터디 비용 (원)',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -889,8 +890,6 @@ class _UploadPageState extends State<UploadStudyPage> {
   @override
   Widget build(BuildContext context) {
     Size size = Utils(context).getScreenSize;
-    final color = Utils(context).color;
-    final theme = Utils(context).getTheme;
     final _scaffoldColor = Theme.of(context).scaffoldBackgroundColor;
     return Container(
       color: Colors.white,
@@ -962,10 +961,10 @@ class _UploadPageState extends State<UploadStudyPage> {
                           SizedBox(
                             height: 20,
                           ),
-                          _leaderThumbnail(),
+                          /*     _leaderThumbnail(),
                           SizedBox(
                             height: 20,
-                          ),
+                          ), */
                           _studyApplication(),
                           SizedBox(
                             height: 20,
@@ -983,6 +982,8 @@ class _UploadPageState extends State<UploadStudyPage> {
                             style: ElevatedButton.styleFrom(primary: bluishClr),
                             onPressed: () {
                               processing == true ? null : _uploadStudy();
+                              Navigator.pushReplacementNamed(
+                                  context, MyStudiesList.routeName);
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(12.0),

@@ -2,22 +2,22 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
-import 'package:lazyclub/components/theme/style.dart';
-import 'package:lazyclub/components/widgets/buttons/auth_btn.dart';
+import 'package:lazyclub/utils/global_methods.dart';
+import 'package:lazyclub/constants/db_constants.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/components/widgets/buttons/custom_btn.dart';
 import 'package:lazyclub/components/widgets/buttons/sns_login/apple_btn.dart';
 import 'package:lazyclub/components/widgets/buttons/sns_login/google_btn.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
-import 'package:lazyclub/database/consts.dart';
-import 'package:lazyclub/database/firebase_consts.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/pages/auth/email_register_page.dart';
 import 'package:lazyclub/pages/auth/loading_manager.dart';
 import 'package:lazyclub/pages/auth/pw_forget.dart';
+import 'package:lazyclub/pages/auth/splash_screen.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/LoginPage';
   const LoginPage({super.key});
-
+  // final void Function(User) onSignIn;
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -81,7 +81,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
     return Scaffold(
       body: LoadingManager(
@@ -116,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     SizedBox(
@@ -205,7 +204,17 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 30,
                     ),
-                    AuthBTN(buttontext: '로그인', fct: submitFormOnLogin),
+                    CustomBTN(
+                        title: '로그인',
+                        fontSize: 16,
+                        backgroundColor: bluishClr,
+                        onPressed: () {
+                          submitFormOnLogin();
+                        },
+                        fontColor: lightBgClr,
+                        borderRadius: 4,
+                        letterSpacing: 0),
+                    // AuthBTN(buttontext: '로그인', fct: submitFormOnLogin),
                     SizedBox(
                       height: 10,
                     ),
@@ -278,15 +287,19 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    AuthBTN(
-                      fct: () {
-                        GlobalMethods.navigateTo(
-                            context: context,
-                            routeName: EmailRegisterPage.routeName);
-                      },
-                      buttontext: '회원가입',
-                      primaryColor: bluishClr,
-                    ),
+
+                    CustomBTN(
+                        title: '회원가입',
+                        fontSize: 16,
+                        backgroundColor: yelloishClr,
+                        onPressed: () {
+                          GlobalMethods.navigateTo(
+                              context: context,
+                              routeName: EmailRegisterPage.routeName);
+                        },
+                        fontColor: headTextClr,
+                        borderRadius: 4,
+                        letterSpacing: 0),
                   ],
                 ),
               ),

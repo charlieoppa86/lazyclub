@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lazyclub/components/providers/favor_provider.dart';
 import 'package:lazyclub/components/providers/studies_model.dart';
-import 'package:lazyclub/components/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
 import 'package:lazyclub/components/widgets/buttons/favor_btn.dart';
-import 'package:lazyclub/components/widgets/currency.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/currency.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/pages/inner/detail_page.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +33,6 @@ class _AllStudyListWidgetState extends State<AllStudyListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
 
     final studyGroupModel = Provider.of<StudyGroupModel>(context);
@@ -61,7 +60,7 @@ class _AllStudyListWidgetState extends State<AllStudyListWidget> {
               ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
                 child: FancyShimmerImage(
-                  imageUrl: studyGroupModel.imgUrl,
+                  imageUrl: studyGroupModel.studyThumbnail,
                   height: size.width * 0.3,
                   width: size.width * 0.3,
                   boxFit: BoxFit.fill,
@@ -76,20 +75,22 @@ class _AllStudyListWidgetState extends State<AllStudyListWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          studyGroupModel.name,
+                          studyGroupModel.studyName,
                           style: TextStyle(
                               letterSpacing: -1,
                               fontSize: 18,
                               fontWeight: FontWeight.w600),
                         ),
                         Text(
-                          studyGroupModel.minDesc,
+                          studyGroupModel.studyMinDesc,
                           style: TextStyle(
                               fontSize: 13,
                               letterSpacing: -1,
                               color: headTextClr.withOpacity(0.7)),
                         ),
-                        Text(DataUtils.calcStringToWon(studyGroupModel.price),
+                        Text(
+                            DataUtils.calcStringToWon(
+                                studyGroupModel.studyPrice.toString()),
                             style: TextStyle(
                               fontSize: 15,
                               letterSpacing: -1,
@@ -102,7 +103,7 @@ class _AllStudyListWidgetState extends State<AllStudyListWidget> {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
                             child: Text(
-                              studyGroupModel.isOffline ? '오프라인' : '온라인',
+                              studyGroupModel.studyFormat,
                               style: TextStyle(
                                   fontSize: 12,
                                   letterSpacing: -1,
@@ -121,7 +122,7 @@ class _AllStudyListWidgetState extends State<AllStudyListWidget> {
                               width: 2,
                             ),
                             Text(
-                              studyGroupModel.location,
+                              studyGroupModel.studyLocation,
                               style: TextStyle(
                                 fontSize: 13,
                                 letterSpacing: -1,

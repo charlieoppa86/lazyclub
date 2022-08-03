@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lazyclub/components/providers/dark_theme_model.dart';
+import 'package:lazyclub/components/providers/theme/dark_theme_model.dart';
 
 class DarkThemeProvider with ChangeNotifier {
   DarkThemePrefs darkThemePrefs = DarkThemePrefs();

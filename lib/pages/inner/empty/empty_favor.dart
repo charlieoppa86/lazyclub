@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lazyclub/app.dart';
-import 'package:lazyclub/components/theme/style.dart';
-import 'package:lazyclub/components/theme/text.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/text.dart';
+import 'package:lazyclub/utils/utils.dart';
 
 class EmptyFavorWidget extends StatelessWidget {
   const EmptyFavorWidget({super.key});
@@ -10,7 +10,6 @@ class EmptyFavorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = Utils(context).getScreenSize;
-    final Color color = Utils(context).color;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -22,21 +21,22 @@ class EmptyFavorWidget extends StatelessWidget {
           ),
           TextWidget(
             text: '즐겨찾기한 스터디가 없어요!',
-            color: color,
+            color: headTextClr,
             textSize: 26,
             isTitle: true,
           ),
           SizedBox(
             height: 5,
           ),
-          TextWidget(text: '관심 스터디에 하트를 눌러 놓으세요!', color: color, textSize: 16),
+          TextWidget(
+              text: '관심 스터디에 하트를 눌러 놓으세요!', color: headTextClr, textSize: 16),
           SizedBox(
             height: 30,
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 25, vertical: 12),
-                  primary: bluishClr),
+                  backgroundColor: bluishClr),
               onPressed: () {
                 Navigator.pushReplacement(
                     context, MaterialPageRoute(builder: (context) => App()));

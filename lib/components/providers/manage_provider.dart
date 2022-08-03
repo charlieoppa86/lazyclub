@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lazyclub/components/providers/favor_model.dart';
+import 'package:lazyclub/components/providers/manage_model.dart';
 
 class ManageProvider with ChangeNotifier {
-  Map<String, FavorModel> _manageStudies = {};
-  Map<String, FavorModel> get getManageStudies {
+  final Map<String, ManageModel> _manageStudies = {};
+  Map<String, ManageModel> get getManageStudies {
     return _manageStudies;
   }
 
@@ -13,7 +13,7 @@ class ManageProvider with ChangeNotifier {
     } else {
       _manageStudies.putIfAbsent(
           studyId,
-          () => FavorModel(
+          () => ManageModel(
                 id: DateTime.now().toString(),
                 studyId: studyId,
               ));

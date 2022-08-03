@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lazyclub/components/theme/style.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/pages/inner/add_studies_model.dart';
 
 class OnlineStudiesWidget extends StatefulWidget {
@@ -20,7 +20,6 @@ class _OnlineStudiesWidgetListState extends State<OnlineStudiesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
 
     return StreamBuilder<QuerySnapshot>(

@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
-import 'package:lazyclub/components/theme/text.dart';
-import 'package:lazyclub/database/firebase_consts.dart';
+import 'package:lazyclub/utils/global_methods.dart';
+import 'package:lazyclub/constants/db_constants.dart';
 
 class GoogleBTN extends StatelessWidget {
   const GoogleBTN({super.key});
@@ -50,17 +49,23 @@ class GoogleBTN extends StatelessWidget {
           height: 50,
           child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset(
                   'assets/google_logo.png',
                   height: 45,
                 ),
-                SizedBox(
-                  width: 85,
+                Text(
+                  '구글 아이디로 로그인',
+                  style: TextStyle(color: Colors.black87, fontSize: 16),
                 ),
-                TextWidget(
-                    text: '구글 아이디로 로그인', color: Colors.black87, textSize: 16)
+                Opacity(
+                  opacity: 0,
+                  child: Image.asset(
+                    'assets/google_logo.png',
+                    height: 45,
+                  ),
+                ),
               ]),
         ),
       ),

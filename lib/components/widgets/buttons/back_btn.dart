@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/utils/utils.dart';
 
 class BackBtn extends StatelessWidget {
   const BackBtn({Key? key}) : super(key: key);
@@ -8,16 +9,15 @@ class BackBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = Utils(context).getScreenSize;
-    final Color color = Utils(context).color;
     return InkWell(
-      child: Icon(
-        IconlyLight.arrowLeft2,
-        color: color,
-      ),
       borderRadius: BorderRadius.circular(12),
       onTap: () {
         Navigator.pop(context);
       },
+      child: Icon(
+        IconlyLight.arrowLeft2,
+        color: headTextClr,
+      ),
     );
   }
 }

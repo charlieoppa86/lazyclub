@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:lazyclub/components/providers/favor_model.dart';
 import 'package:lazyclub/components/providers/favor_provider.dart';
 import 'package:lazyclub/components/providers/studies_provider.dart';
-import 'package:lazyclub/components/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
 import 'package:lazyclub/components/widgets/buttons/favor_btn.dart';
-import 'package:lazyclub/components/widgets/currency.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/currency.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/pages/inner/detail_page.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +21,6 @@ class FavorListWidget extends StatefulWidget {
 class _FavorListWidgetState extends State<FavorListWidget> {
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
     final favorProvider = Provider.of<FavorProvider>(context);
     final studyGroupProvider = Provider.of<StudyGroupsProvider>(context);
@@ -52,7 +51,7 @@ class _FavorListWidgetState extends State<FavorListWidget> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                   child: FancyShimmerImage(
-                    imageUrl: getCurrStudy.imgUrl,
+                    imageUrl: getCurrStudy.studyThumbnail,
                     boxFit: BoxFit.fill,
                   ),
                 ),
@@ -65,20 +64,22 @@ class _FavorListWidgetState extends State<FavorListWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    getCurrStudy.name,
+                    getCurrStudy.studyName,
                     style: TextStyle(
                         letterSpacing: -1,
                         fontSize: 20,
                         fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    getCurrStudy.minDesc,
+                    getCurrStudy.studyMinDesc,
                     style: TextStyle(
                         fontSize: 14,
                         letterSpacing: -1,
                         color: headTextClr.withOpacity(0.7)),
                   ),
-                  Text(DataUtils.calcStringToWon(getCurrStudy.price),
+                  Text(
+                      DataUtils.calcStringToWon(
+                          getCurrStudy.studyPrice.toString()),
                       style: TextStyle(
                         fontSize: 15,
                         letterSpacing: -1,
@@ -91,7 +92,7 @@ class _FavorListWidgetState extends State<FavorListWidget> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
                       child: Text(
-                        getCurrStudy.isOffline ? '오프라인' : '온라인',
+                        getCurrStudy.studyFormat,
                         style: TextStyle(
                             fontSize: 12,
                             letterSpacing: -1,
@@ -107,7 +108,7 @@ class _FavorListWidgetState extends State<FavorListWidget> {
                         size: 16,
                       ),
                       Text(
-                        getCurrStudy.location,
+                        getCurrStudy.studyLocation,
                         style: TextStyle(
                           fontSize: 14,
                           letterSpacing: -1,

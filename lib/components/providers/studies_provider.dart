@@ -1,13 +1,44 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lazyclub/components/providers/studies_model.dart';
 
 class StudyGroupsProvider with ChangeNotifier {
+  static List<StudyGroupModel> _studyGroups = [];
   List<StudyGroupModel> get getStudyGroups {
     return _studyGroups;
   }
 
-  List<StudyGroupModel> get getPopularStudies {
+  /*  List<StudyGroupModel> get getPopularStudies {
     return _studyGroups.where((element) => element.isPopular).toList();
+  }
+ */
+  Future<void> fetchStudies() async {
+    await FirebaseFirestore.instance
+        .collection('studies')
+        .get()
+        .then((QuerySnapshot studySnapshot) {
+      studySnapshot.docs.forEach((element) {
+        _studyGroups.insert(
+            0,
+            StudyGroupModel(
+              id: element.get('id'),
+              uid: element.get('uid'),
+              studyThumbnail: element.get('studyThumbnail'),
+              studyName: element.get('studyName'),
+              studyFormat: element.get('studyFormat'),
+              studySubject: element.get('studySubject'),
+              studyLeaderName: element.get('studyLeaderName'),
+              studyLeaderInfo: element.get('studyLeaderInfo'),
+              studyLocation: element.get('studyLocation'),
+              studyMinDesc: element.get('studyMinDesc'),
+              studyMaxDesc: element.get('studyMaxDesc'),
+              studyPrice: int.parse(element.get('studyPrice')),
+              studyApplyLink: element.get('studyApplyLink'),
+              //isPopular: element.get('isPopular'),
+            ));
+      });
+    });
+    notifyListeners();
   }
 
   StudyGroupModel findStudyById(String studyId) {
@@ -16,13 +47,14 @@ class StudyGroupsProvider with ChangeNotifier {
 
   List<StudyGroupModel> findStudyByCategory(String categoryName) {
     List<StudyGroupModel> _categoryList = _studyGroups
-        .where((element) =>
-            element.category.toLowerCase().contains(categoryName.toLowerCase()))
+        .where((element) => element.studyFormat
+            .toLowerCase()
+            .contains(categoryName.toLowerCase()))
         .toList();
     return _categoryList;
   }
 
-  static List<StudyGroupModel> _studyGroups = [
+  /* static List<StudyGroupModel> _studyGroups = [
     StudyGroupModel(
         id: '0',
         cid: '0',
@@ -188,5 +220,5 @@ class StudyGroupsProvider with ChangeNotifier {
         price: '10000',
         isPopular: true,
         isOffline: false),
-  ];
+  ]; */
 }

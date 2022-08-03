@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:lazyclub/components/providers/favor_provider.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
-import 'package:lazyclub/database/firebase_consts.dart';
+import 'package:lazyclub/utils/global_methods.dart';
+import 'package:lazyclub/constants/db_constants.dart';
 import 'package:provider/provider.dart';
 
 class FavorBTN extends StatefulWidget {
@@ -34,7 +33,6 @@ class _FavorBTNState extends State<FavorBTN> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     final favorProvider = Provider.of<FavorProvider>(context);
 
     return GestureDetector(
@@ -70,7 +68,7 @@ class _FavorBTNState extends State<FavorBTN> {
                 : IconlyLight.heart,
             color: widget.isInFavor != null && widget.isInFavor == true
                 ? Colors.red
-                : color,
+                : Colors.white,
             size: 22,
           ),
           Visibility(

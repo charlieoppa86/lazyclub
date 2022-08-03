@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
-import 'package:lazyclub/components/theme/style.dart';
-import 'package:lazyclub/components/theme/text.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/global_methods.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/text.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/pages/main/new_study.dart';
 
 class EmptyPage extends StatelessWidget {
@@ -18,7 +18,6 @@ class EmptyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
     return Scaffold(
       body: SingleChildScrollView(
@@ -35,14 +34,14 @@ class EmptyPage extends StatelessWidget {
                 ),
                 TextWidget(
                   text: title,
-                  color: color,
+                  color: headTextClr,
                   textSize: 26,
                   isTitle: true,
                 ),
                 SizedBox(
                   height: 5,
                 ),
-                TextWidget(text: subtitle, color: color, textSize: 16),
+                TextWidget(text: subtitle, color: headTextClr, textSize: 16),
                 SizedBox(
                   height: 30,
                 ),

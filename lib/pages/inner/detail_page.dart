@@ -4,13 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:lazyclub/components/providers/favor_provider.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
+import 'package:lazyclub/utils/global_methods.dart';
 import 'package:lazyclub/components/providers/studies_provider.dart';
-import 'package:lazyclub/components/theme/style.dart';
+import 'package:lazyclub/constants/db_constants.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
 import 'package:lazyclub/components/widgets/buttons/favor_btn.dart';
-import 'package:lazyclub/components/widgets/currency.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
-import 'package:lazyclub/database/firebase_consts.dart';
+import 'package:lazyclub/utils/currency.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class DetailPage extends StatefulWidget {
@@ -45,7 +45,6 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
     final studyId = ModalRoute.of(context)!.settings.arguments as String;
     final studyGroupsProviders = Provider.of<StudyGroupsProvider>(context);
@@ -85,7 +84,7 @@ class _DetailPageState extends State<DetailPage> {
               // 헤더 이미지
               SizedBox(
                 child: FancyShimmerImage(
-                  imageUrl: getStudiesNow.imgUrl,
+                  imageUrl: getStudiesNow.studyThumbnail,
                   boxFit: BoxFit.fill,
                   width: size.width,
                 ),
@@ -101,7 +100,7 @@ class _DetailPageState extends State<DetailPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              getStudiesNow.name,
+                              getStudiesNow.studyName,
                               style: TextStyle(
                                   fontSize: 24,
                                   letterSpacing: -1,
@@ -120,7 +119,7 @@ class _DetailPageState extends State<DetailPage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(10, 3, 10, 3),
                                     child: Text(
-                                      getStudiesNow.isOffline ? '오프라인' : '온라인',
+                                      getStudiesNow.studyFormat,
                                       style: TextStyle(
                                           fontSize: 16,
                                           letterSpacing: -1,
@@ -139,7 +138,7 @@ class _DetailPageState extends State<DetailPage> {
                                       size: 18,
                                     ),
                                     Text(
-                                      getStudiesNow.location,
+                                      getStudiesNow.studyLocation,
                                       style: TextStyle(
                                         fontSize: 16,
                                         letterSpacing: -1,
@@ -188,12 +187,12 @@ class _DetailPageState extends State<DetailPage> {
                             height: 10,
                           ),
                           Text(
-                            getStudiesNow.minDesc,
+                            getStudiesNow.studyMinDesc,
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            getStudiesNow.category,
+                            getStudiesNow.studyFormat,
                             style: TextStyle(
                                 fontSize: 15,
                                 color: headTextClr.withOpacity(0.4),
@@ -203,7 +202,7 @@ class _DetailPageState extends State<DetailPage> {
                             height: 20,
                           ),
                           Text(
-                            getStudiesNow.maxDesc,
+                            getStudiesNow.studyMaxDesc,
                             style: TextStyle(fontSize: 16, height: 1.3),
                           ),
                           SizedBox(
@@ -243,7 +242,7 @@ class _DetailPageState extends State<DetailPage> {
                                         height: 5,
                                       ),
                                       Text(
-                                        getStudiesNow.leader,
+                                        getStudiesNow.studyLeaderName,
                                         style: TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold,
@@ -256,7 +255,7 @@ class _DetailPageState extends State<DetailPage> {
                                     width: 25,
                                   ),
                                   Text(
-                                    getStudiesNow.leaderInfo,
+                                    getStudiesNow.studyLeaderInfo,
                                     style: TextStyle(
                                         fontSize: 16,
                                         color: headTextClr.withOpacity(0.8)),
@@ -348,7 +347,9 @@ class _DetailPageState extends State<DetailPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(DataUtils.calcStringToWon(getStudiesNow.price),
+                  Text(
+                      DataUtils.calcStringToWon(
+                          getStudiesNow.studyPrice.toString()),
                       style: TextStyle(
                           fontSize: 20,
                           letterSpacing: -1,

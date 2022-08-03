@@ -1,13 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lazyclub/components/theme/style.dart';
+import 'package:lazyclub/constants/db_constants.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
 import 'package:lazyclub/components/widgets/category.dart';
 import 'package:lazyclub/components/widgets/profile.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/pages/main/my_page.dart';
 
 class CategoriesPage extends StatefulWidget {
   static const routeName = "/CategoriesPage";
-  const CategoriesPage({super.key});
+  CategoriesPage({super.key});
+  final User? user = authInstance.currentUser;
 
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();
@@ -25,8 +28,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: headTextClr),
@@ -56,13 +59,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 25, 20, 15),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            '카테고리',
-            style: TextStyle(
-                fontSize: 24, letterSpacing: -2, fontWeight: FontWeight.bold),
-          ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Expanded(
             child: GridView.count(

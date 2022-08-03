@@ -1,4 +1,4 @@
-import 'package:lazyclub/components/providers/studies_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Splash {
   static List<String> splashImages = [
@@ -16,7 +16,35 @@ class SwiperImg {
   ];
 }
 
-class ConstStudies {
+/* abstract class AuthBase {
+  User? get currentUser;
+  Future<User?> signInAnonymously();
+  Future<void> signOut();
+}
+
+class Auth implements AuthBase {
+  final FirebaseAuth _authInstance = FirebaseAuth.instance;
+
+  @override
+  User? get currentUser => _authInstance.currentUser;
+
+  @override
+  Future<User?> signInAnonymously() async {
+    final userCredential = await _authInstance.signInAnonymously();
+    return userCredential.user;
+  }
+
+  @override
+  Future<void> signOut() async {
+    await _authInstance.signOut();
+//   }
+// } */
+
+// final FirebaseAuth authInstance = FirebaseAuth.instance;
+// final User? user = authInstance.currentUser;
+// final uid = user!.uid;
+
+/* class ConstStudies {
   static List<StudyGroupModel> studyGroups = [
     StudyGroupModel(
         id: '0',
@@ -185,7 +213,7 @@ class ConstStudies {
         isOffline: false),
   ];
 }
-
+ */
 
 
 

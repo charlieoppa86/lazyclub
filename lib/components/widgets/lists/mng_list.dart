@@ -3,10 +3,10 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
-import 'package:lazyclub/components/theme/style.dart';
-import 'package:lazyclub/components/widgets/currency.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/currency.dart';
+import 'package:lazyclub/utils/global_methods.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/utils/utils.dart';
 
 class ManageListWidget extends StatefulWidget {
   const ManageListWidget({super.key, required this.id});
@@ -69,7 +69,6 @@ class _ManageListWidgetState extends State<ManageListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
     /* final manageProvider = Provider.of<ManageProvider>(context);
     final studyGroupProvider = Provider.of<StudyGroupsProvider>(context);

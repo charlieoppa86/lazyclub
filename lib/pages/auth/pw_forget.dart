@@ -4,12 +4,13 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:lazyclub/components/providers/global_methods.dart';
-import 'package:lazyclub/components/widgets/buttons/auth_btn.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
-import 'package:lazyclub/database/consts.dart';
-import 'package:lazyclub/database/firebase_consts.dart';
+import 'package:lazyclub/utils/global_methods.dart';
+import 'package:lazyclub/constants/db_constants.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/components/widgets/buttons/custom_btn.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/pages/auth/loading_manager.dart';
+import 'package:lazyclub/pages/auth/splash_screen.dart';
 
 class PwForgetPage extends StatefulWidget {
   static const routeName = '/PwForgetPage';
@@ -104,38 +105,52 @@ class _PwForgetPageState extends State<PwForgetPage> {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
-                  '비밀번호를 잊으셨어요?',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(height: 20),
+                    Text(
+                      '비밀번호를 잊으셨어요?',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: emailController,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                          hintText: '이메일 주소를 입력하세요',
+                          labelStyle: TextStyle(color: Colors.white),
+                          labelText: '이메일 주소를 입력하세요',
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          )),
+                    ),
+                    SizedBox(height: 20),
+                    CustomBTN(
+                        title: '리셋하기',
+                        fontSize: 16,
+                        backgroundColor: bluishClr,
+                        onPressed: _forgetPassFCT,
+                        fontColor: lightBgClr,
+                        borderRadius: 4,
+                        letterSpacing: 0),
+                    /*     AuthBTN(
+                        fct: () {
+                          _forgetPassFCT();
+                        },
+                        buttontext: '리셋하기') */
+                  ],
                 ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: emailController,
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                      hintText: '이메일 주소를 입력하세요',
-                      labelStyle: TextStyle(color: Colors.white),
-                      labelText: '이메일 주소를 입력하세요',
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      errorBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      )),
-                ),
-                SizedBox(height: 20),
-                AuthBTN(
-                    fct: () {
-                      _forgetPassFCT();
-                    },
-                    buttontext: '리셋하기')
               ],
             ),
           )

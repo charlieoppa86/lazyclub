@@ -1,16 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lazyclub/components/providers/favor_provider.dart';
-import 'package:lazyclub/components/theme/style.dart';
+import 'package:lazyclub/constants/db_constants.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
 import 'package:lazyclub/components/widgets/lists/favor_list.dart';
 import 'package:lazyclub/components/widgets/profile.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/pages/inner/empty/empty_favor.dart';
 import 'package:lazyclub/pages/main/my_page.dart';
 import 'package:provider/provider.dart';
 
 class FavorPage extends StatefulWidget {
   static const routeName = "/FavorPage";
-  const FavorPage({super.key});
+  FavorPage({super.key});
+  final User? user = authInstance.currentUser;
 
   @override
   State<FavorPage> createState() => _FavorPageState();
@@ -19,7 +22,6 @@ class FavorPage extends StatefulWidget {
 class _FavorPageState extends State<FavorPage> {
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
 
     final favorProvider = Provider.of<FavorProvider>(context);
@@ -57,13 +59,8 @@ class _FavorPageState extends State<FavorPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '즐겨찾기',
-              style: TextStyle(
-                  fontSize: 24, letterSpacing: -2, fontWeight: FontWeight.bold),
-            ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Expanded(
               child: favorStudyList.isEmpty

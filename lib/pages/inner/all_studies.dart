@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:lazyclub/components/providers/studies_model.dart';
 import 'package:lazyclub/components/providers/studies_provider.dart';
-import 'package:lazyclub/components/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
 import 'package:lazyclub/components/widgets/buttons/back_btn.dart';
-import 'package:lazyclub/components/widgets/lists/study_list.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/utils.dart';
+import 'package:lazyclub/pages/inner/all_studies_model.dart';
 import 'package:provider/provider.dart';
 
 class AllStudyListPage extends StatefulWidget {
@@ -17,6 +18,8 @@ class AllStudyListPage extends StatefulWidget {
 }
 
 class _AllStudyListPageState extends State<AllStudyListPage> {
+  final Stream<QuerySnapshot> _allStudiesStream =
+      FirebaseFirestore.instance.collection('studies').snapshots();
   final TextEditingController? _searchTextController = TextEditingController();
   final FocusNode _searchTextFocusNode = FocusNode();
 
@@ -27,12 +30,19 @@ class _AllStudyListPageState extends State<AllStudyListPage> {
     super.dispose();
   }
 
+  /*  @override
+  void initState() {
+    final studyGroupsProvider =
+        Provider.of<StudyGroupsProvider>(context, listen: false);
+    studyGroupsProvider.fetchStudies();
+    super.initState();
+  } */
+
   @override
   Widget build(BuildContext context) {
     Size size = Utils(context).getScreenSize;
-    final Color color = Utils(context).color;
-    final studyGroupsProviders = Provider.of<StudyGroupsProvider>(context);
-    List<StudyGroupModel> allStudies = studyGroupsProviders.getStudyGroups;
+    final studyGroupsProvider = Provider.of<StudyGroupsProvider>(context);
+    List<StudyGroupModel> allStudies = studyGroupsProvider.getStudyGroups;
     return Scaffold(
       appBar: AppBar(
           title: Text(
@@ -76,18 +86,54 @@ class _AllStudyListPageState extends State<AllStudyListPage> {
                 ),
               ),
             ),
-            GridView.count(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                childAspectRatio: size.width / (size.height * 0.18),
-                crossAxisCount: 1,
-                crossAxisSpacing: 8,
-                children: List.generate(allStudies.length - 1, (index) {
-                  return ChangeNotifierProvider.value(
-                    value: allStudies[index + 1],
-                    child: AllStudyListWidget(),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: _allStudiesStream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('데이터 전송에 문제가 있습니다');
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  return GestureDetector(
+                    onTap: () {
+                      /*     Navigator.pushNamed(
+                          context,
+                          DetailPage.routeName,
+                        ); */
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: headTextClr.withOpacity(0.1), width: 1)),
+                      ),
+                      height: size.height,
+                      child: ListView.separated(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return AllStudiesListModel(
+                                studies: snapshot.data!.docs[index]);
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return Container(
+                              height: 1,
+                              color: headTextClr.withOpacity(0.1),
+                            );
+                          },
+                          itemCount: snapshot.data!.docs.length),
+                    ),
                   );
-                }))
+                },
+              ),
+            ),
           ]),
         ),
       ),

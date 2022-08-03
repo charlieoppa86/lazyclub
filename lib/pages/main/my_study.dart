@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lazyclub/components/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
 import 'package:lazyclub/components/widgets/profile.dart';
-import 'package:lazyclub/components/widgets/utils.dart';
+import 'package:lazyclub/utils/utils.dart';
 import 'package:lazyclub/pages/inner/mng_studies_model.dart';
 import 'package:lazyclub/pages/main/my_page.dart';
 
@@ -20,8 +20,9 @@ class _MyStudiesListState extends State<MyStudiesList> {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
+/*     final studyGroupModel = Provider.of<StudyGroupModel>(context);
+    final studyGroupsProviders = Provider.of<StudyGroupsProvider>(context); */
 
     return Scaffold(
         appBar: AppBar(
@@ -54,15 +55,8 @@ class _MyStudiesListState extends State<MyStudiesList> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '스터디 관리',
-                style: TextStyle(
-                    fontSize: 24,
-                    letterSpacing: -2,
-                    fontWeight: FontWeight.bold),
-              ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Expanded(
                 child: StreamBuilder<QuerySnapshot>(
@@ -81,10 +75,8 @@ class _MyStudiesListState extends State<MyStudiesList> {
 
                     return GestureDetector(
                       onTap: () {
-                        /*     Navigator.pushNamed(
-                          context,
-                          DetailPage.routeName,
-                        ); */
+                        /*            Navigator.pushNamed(context, DetailPage.routeName,
+                            arguments: studyGroupModel.id);  */
                       },
                       child: Container(
                         decoration: BoxDecoration(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lazyclub/components/providers/dark_theme_provider.dart';
-import 'package:lazyclub/components/theme/style.dart';
-import 'package:lazyclub/components/theme/text.dart';
+import 'package:lazyclub/components/providers/theme/dark_theme_provider.dart';
+import 'package:lazyclub/components/providers/theme/style.dart';
+import 'package:lazyclub/components/providers/theme/text.dart';
 import 'package:lazyclub/pages/inner/each_cat.dart';
 import 'package:provider/provider.dart';
 
@@ -16,9 +16,8 @@ class CategoriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeState = Provider.of<DarkThemeProvider>(context);
     double _screenWidth = MediaQuery.of(context).size.width;
-    final Color color = themeState.getDarkTheme ? Colors.white : Colors.black;
+
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, EachCategotyPage.routeName,
@@ -41,7 +40,7 @@ class CategoriesWidget extends StatelessWidget {
           ),
           TextWidget(
             text: catText,
-            color: color,
+            color: headTextClr,
             textSize: 18,
             isTitle: true,
           )
